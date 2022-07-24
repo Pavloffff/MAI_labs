@@ -1,0 +1,150 @@
+================= ОТЧЕТ ====================
+1) ssh-ключи
+
+Студент a:
+
+lyutoev@lyutoev:~$ ssh-keygen -t ed25519 -C "lyutoev2003ia@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/lyutoev/.ssh/id_ed25519): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/lyutoev/.ssh/id_ed25519
+Your public key has been saved in /home/lyutoev/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:JZRXc1bK9LFBParHLrZDXFpRMmw/HuQcCXTngRmekj8 lyutoev2003ia@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|        .. .=*@O=|
+|       .. . o%=OB|
+|        ...o.oX.=|
+|         o  o+ * |
+|        S . *E. o|
+|           = o.. |
+|          . o    |
+|           + .   |
+|          ..+    |
++----[SHA256]-----+
+(base) lyutoev@lyutoev:~$ eval "$(ssh-agent -s)"
+Agent pid 6881
+(base) lyutoev@lyutoev:~$ cd .ssh/
+(base) lyutoev@lyutoev:~/.ssh$ ls -loga
+итого 20
+drwx------  2 4096 фев 12 19:07 .
+drwxr-xr-x 29 4096 янв 21 20:42 ..
+-rw-------  1  419 фев 12 19:07 id_ed25519
+-rw-r--r--  1  105 фев 12 19:07 id_ed25519.pub
+-rw-r--r--  1  444 сен 18 11:48 known_hosts
+(base) lyutoev@lyutoev:~/.ssh$ ssh-add id_ed25519
+Identity added: id_ed25519 (lyutoev2003ia@gmail.com)
+(base) lyutoev@lyutoev:~/.ssh$ cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2fYoS4d9Ks7uX5vhsVH8HfM0C7xaAkgFO4bB6q0NXC lyutoev2003ia@gmail.com
+
+Студент b:
+
+ggame@ggame:~$ ssh-keygen -t ed25519 -C "pavlov.id.2003@gmail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/ggame/.ssh/id_ed25519): 
+/home/ggame/.ssh/id_ed25519 already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/ggame/.ssh/id_ed25519
+Your public key has been saved in /home/ggame/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:D+R2WNFDNWw9qGNBX5hh6t0Oi4bjuoFcIzdA5A75v1A pavlov.id.2003@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|    .o    o+.=Bo |
+|    +      o*++o.|
+|   o o  . ..o+  .|
+|    + .o o.+. .  |
+|     + ES o..o . |
+|    . B.o+. . +  |
+|     + o o.o . . |
+|      . + o      |
+|       +o.       |
++----[SHA256]-----+
+ggame@ggame:~$ eval "$(ssh-agent -s)"
+Agent pid 24177
+ggame@ggame:~$ cd .ssh/
+ggame@ggame:~/.ssh$ ls -loga
+итого 28
+drwx------  2 4096 фев 12 13:09 .
+drwxr-xr-x 33 4096 фев 12 10:32 ..
+-rw-rw-r--  1    0 фев 12 13:09 config
+-rw-------  1  419 фев 12 13:18 id_ed25519
+-rw-r--r--  1  106 фев 12 13:18 id_ed25519.pub
+-rw-------  1 2602 сен 14 22:37 id_rsa
+-rw-r--r--  1  565 сен 14 22:37 id_rsa.pub
+-rw-r--r--  1  444 сен 12 14:58 known_hosts
+ggame@ggame:~/.ssh$ ssh-add id_ed25519
+Identity added: id_ed25519 (pavlov.id.2003@gmail.com)
+ggame@ggame:~/.ssh$ cat id_ed25519.pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPsq1vBzGOqw1BC2+iSp7G/4+ezl8DW8eQokjmM5Ne9e pavlov.id.2003@gmail.com
+
+
+2) Студент a создает репозиторий на github, добавляет студента b в colaborators, затем:
+
+lyutoev@lyutoev:~/workshop/git$ git clone git@github.com:Uzym/labagit.git
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git add README.md
+
+yutoev@lyutoev:~/workshop/git/labagit$ git status
+На ветке master
+
+Еще нет коммитов
+
+Изменения, которые будут включены в коммит:
+  (используйте «git rm --cached <файл>…», чтобы убрать из индекса)
+	новый файл:    README.md
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git commit -m "Create README.md"
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git push
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git branch a
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git checkout a
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git add main.c
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git status
+
+На ветке a
+Изменения, которые будут включены в коммит:
+  (используйте «git restore --staged <файл>…», чтобы убрать из индекса)
+	новый файл:    main.c
+
+lyutoev@lyutoev:~/workshop/git/labagit$ git push origin a
+
+
+3) Cтудент b:
+
+ggame@ggame:~/newlabs/git$ git clone git@github.com:Uzym/labagit.git
+
+ggame@ggame:~/newlabs/git/labagit$ git branch b
+
+ggame@ggame:~/newlabs/git/labagit$ git checkout b
+
+ggame@ggame:~/newlabs/git/labagit$ git add main.c
+
+ggame@ggame:~/newlabs/git/labagit$ git status
+На ветке b
+Изменения, которые будут включены в коммит:
+  (используйте «git restore --staged <файл>…», чтобы убрать из индекса)
+	новый файл:    main.c
+
+ggame@ggame:~/newlabs/git/labagit$ git commit -m "add codestyle for a"
+
+ggame@ggame:~/newlabs/git/labagit$ git push --set-upstream origin b
+
+4) Студент a создает pull reqest и merge свой код в master
+
+5) Студент b пытается merge свой код в master, но возникает конфликт, тогда студент b исправляет код и выбирает rebase, после чего
+
+ggame@ggame:~/newlabs/git/labagit$ git rebase master
+
+ggame@ggame:~/newlabs/git/labagit$ git checkout master
+
+ggame@ggame:~/newlabs/git/labagit$ git push origin master
+

@@ -1,0 +1,30 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+\linespread{1.5}
+\usepackage{mathtools}
+\usepackage[left=2cm,right=2cm,
+top=2cm,bottom=2.5cm,bindingoffset=0cm]{geometry}
+\usepackage{amsfonts} 
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue!80!black}}
+\title{Компакты в $\mathbb{R}^n$ }
+\author{Битюков Юрий Иванович}
+\date{24.03.2022}
+\parindent=1cm
+
+\begin{document}
+	\maketitle
+	\textbf{Компакт} $X \subset \mathbb{R}^n$ - это такое подмножество в $\mathbb{R}^n$, из любой плоскости точек которого можно выделить сходящуюся подпоследовательность, предел которой принадлежит $X$. \\
+	\par\textbf{Теорема}. $X \subset \mathbb{R}^n$ - компакт $\Longleftrightarrow$ $X$ ограничено и замкнуто.
+	\par\textbf{Доказательство}. Пусть $X$ - компакт. Допустим, что $X$ не является ограниченным $\Longrightarrow$ для $\forall m \in \mathbb{N}$ $\exists x_m \in X: \rho(0, x_m) > m \Longrightarrow $ $\lim\limits_{m\to \infty} \rho(0,\dots,m)=\infty$ $\Longrightarrow$ из $\{x_{m_k}\}$ нельзя выделить сходящуюся подпоследовательность (так как $\forall \{x_{m_k}\}$ $\Longrightarrow$ $\rho(0, x_{m_k}) = \omega$) $\Longrightarrow$ $\{x_{m_k}\}$ не ограничена, что не может быть при сходимости $\Longrightarrow$ $X$ ограничена.
+	\par Докажем замкнутость $X = \overline{X}$. Допустим, что $\exists a \in \overline{X} \backslash X $; $0 \le \rho(a, x_m) < \frac{1}{m} \xrightarrow{m \to n} 0$. Тогда $\forall m \in \mathbb{N}$ $\exists x_m \in X: \rho(0,x_m) < \frac{1}{m} \Longrightarrow$ $X$ - компакт $\Longrightarrow$ $\exists \{x_{m_k}\}_{m_k \in \mathbb{N}}$ сходится к точке $X$, но $\rho(0, x_m) < \frac{1}{m_k} \to 0$, $k \to \infty$ $\Longrightarrow $ $\lim\limits_{k\to \infty} x_{m_k}=a$ $\Longrightarrow$ $a \in X$ - противоречие, т.к. $a \in \overline{X} \backslash X$ $\Longrightarrow$ $X$ - замкнуто.
+	\par Обратно: Пусть $X$ ограничено и замкнуто. Возьмем последовательность $\{x_m\}_{m \in \mathbb{N}} < X$ - последовательность ограничена $\Longrightarrow$ по теореме Больцано-Вейерштраса из $\{x_m\}_{m \in \mathbb{N}}$ можно выделить сходящуюся подпоследовательность $\{x_{m_k}\}_{m_k \in \mathbb{N}}$: $\lim\limits_{k\to \infty} x_{m_k}=a$ $\Longrightarrow$ $a$ - предельная точка $X$ $\Longrightarrow$ из замкнутости $\Longrightarrow$ $a \in X$ $\Longrightarrow$ $X$ - компакт. $\qed$
+\end{document}
