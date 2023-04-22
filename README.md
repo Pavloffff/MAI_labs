@@ -1,6 +1,5 @@
 # MAI_labs
 Zaytsev labs MAI 8 1-2 sem <br>
-В случае если плохая лаба писать https://vk.com/i.pavlov2002 <br>
 Варианты 1 семестр: <br>
 лр5: 25 <br>
 лр6: 32 <br>
